@@ -1,0 +1,19 @@
+{
+    "home": "मुख्य पृष्ठ",
+    "settings": "सेटिंग्ज",
+  
+    "books": "पुस्तके",
+    "book": "पुस्तक",
+  
+    "authors": "लेखक",
+    "author": "लेखक",
+    "description": "वर्णन",
+  
+    "language": "भाषा",
+    "english": "इंग्रजी",
+    "hindi": "हिंदी",
+    "marathi": "मराठी",
+    "arabic": "अरबी",
+    "logout": "लॉग आउट"
+  }
+  
