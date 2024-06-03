@@ -1,0 +1,19 @@
+{
+    "home": "Home",
+    "settings": "Settings",
+  
+    "books": "Books",
+    "book": "Book",
+  
+    "authors": "Authors",
+    "author": "Author",
+    "description": "Description",
+  
+    "language": "Language",
+    "english": "English",
+    "hindi": "Hindi",
+    "marathi": "Marathi",
+    "arabic": "Arabic",
+    "logout": "Logout"
+  }
+  
