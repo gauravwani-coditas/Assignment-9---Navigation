@@ -5,4 +5,4 @@ sealed class IntroState {}
 
 class SplashScreenState extends IntroState {}
 
-class OnBoardingState extends IntroState{}
+class OnBoardingState extends IntroState {}

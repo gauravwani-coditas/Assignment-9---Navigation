@@ -15,14 +15,10 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-
     AuthorOpenRoute.name: (routeData) {
       final args = routeData.argsAs<AuthorOpenArgs>();
       return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: AuthorOpen(authorName: args.authorName)
-        
-      );
+          routeData: routeData, child: AuthorOpen(authorName: args.authorName));
     },
     AuthorsRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
@@ -33,9 +29,7 @@ abstract class _$AppRouter extends RootStackRouter {
     BookOpenRoute.name: (routeData) {
       final args = routeData.argsAs<BookOpenArgs>();
       return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: BookOpen(bookName: args.bookName)
-      );
+          routeData: routeData, child: BookOpen(bookName: args.bookName));
     },
     BooksRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
@@ -120,7 +114,6 @@ class AuthorOpenArgs {
 
   final String authorName;
 
-
   @override
   String toString() {
     return 'AuthorOpenArgs{authorName: $authorName}';
@@ -146,13 +139,11 @@ class AuthorsRoute extends PageRouteInfo<void> {
 class BookOpenRoute extends PageRouteInfo<BookOpenArgs> {
   BookOpenRoute({
     required String bookName,
-    
     List<PageRouteInfo>? children,
   }) : super(
           BookOpenRoute.name,
           args: BookOpenArgs(
             bookName: bookName,
-          
           ),
           initialChildren: children,
         );
@@ -168,8 +159,6 @@ class BookOpenArgs {
   });
 
   final String bookName;
-
-  
 
   @override
   String toString() {

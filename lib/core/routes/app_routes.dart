@@ -24,7 +24,6 @@ class AppRouter extends _$AppRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
-
           page: CustomNavRoute.page,
           initial: isLogin,
           children: [
@@ -38,7 +37,10 @@ class AppRouter extends _$AppRouter {
           page: OnBoardingRoute1.page,
           initial: !isLogin,
         ),
-        AutoRoute(page: SignInRoute.page, ),
+        AutoRoute(
+          page: SignInRoute.page,
+        ),
+        
         AutoRoute(page: SignUpRoute.page),
         AutoRoute(page: HomeRoute.page),
         AutoRoute(page: OnBoardingRoute2.page),

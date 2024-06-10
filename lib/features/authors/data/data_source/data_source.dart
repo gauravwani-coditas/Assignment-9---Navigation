@@ -1,4 +1,3 @@
-
 List<String> authorsDataSource = [
   "Author one",
   "Author two",
@@ -6,6 +5,3 @@ List<String> authorsDataSource = [
   "Author four",
   "Author five",
 ];
-
-
-

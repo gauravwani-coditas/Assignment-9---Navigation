@@ -8,15 +8,13 @@ part 'intro_state.dart';
 
 class IntroBloc extends Bloc<IntroEvent, IntroState> {
   IntroBloc() : super(SplashScreenState()) {
-   on<SplashScreenEvent>(splashScreenEvent);
-    
-  }  
+    on<SplashScreenEvent>(splashScreenEvent);
+  }
 
-  FutureOr<void> splashScreenEvent(SplashScreenEvent event, Emitter<IntroState> emit) async{
-
+  FutureOr<void> splashScreenEvent(
+      SplashScreenEvent event, Emitter<IntroState> emit) async {
     emit(SplashScreenState());
     await Future.delayed(const Duration(seconds: 3));
     emit(OnBoardingState());
-    
   }
 }

@@ -1,29 +1,27 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 @RoutePage()
-class BookOpen extends StatelessWidget{
-  
+class BookOpen extends StatelessWidget {
   String bookName;
   BookOpen({required this.bookName, super.key});
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
-      appBar: AppBar(title: Text(bookName),),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 28),
-          child: Column(
-            children: [
-          
-              const Expanded(flex: 63, child: SizedBox()),
-              Text("$bookName ${AppLocalizations.of(context)!.description}"),
-              const Expanded(flex: 650, child: SizedBox()),
-            ],
-          ),
+      appBar: AppBar(
+        title: Text(bookName),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 28),
+        child: Column(
+          children: [
+            const Expanded(flex: 63, child: SizedBox()),
+            Text("$bookName "),
+            const Expanded(flex: 650, child: SizedBox()),
+          ],
         ),
+      ),
     );
   }
 }

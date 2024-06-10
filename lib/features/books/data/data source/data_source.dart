@@ -1,11 +1,1 @@
-
-List<String> booksDataSource = [
-  "one",
-  "two",
-  "three",
-  "four",
-  "five",
-];
-
-
-
+List<String> booksDataSource = ['Book one', 'Book two', 'Book three'];

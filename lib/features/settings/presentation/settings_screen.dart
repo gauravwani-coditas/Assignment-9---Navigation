@@ -1,17 +1,15 @@
-
-
 import 'package:auto_route/auto_route.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:routing/core/di/di.dart';
 import 'package:routing/core/routes/app_routes.dart';
 import 'package:routing/core/utils/constants.dart';
-import 'package:routing/features/settings/bloc/locale_bloc.dart';
-import 'package:routing/main.dart';
+import 'package:routing/core/firebase/auth.dart';
+import 'package:routing/features/settings/presentation/bloc/locale/locale_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 
 Map<String, String> languages = {
   'English': 'en',
@@ -23,15 +21,13 @@ Map<String, String> languages = {
 @RoutePage()
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
-
   @override
   State<SettingsScreen> createState() => SettingsScreenState();
 }
 
 class SettingsScreenState extends State<SettingsScreen> {
-  String? userName;
+  String userName = "";
   String? currentLanguageCode;
-
   Future<void> _selectedLanguage() async {
     final prefs = await SharedPreferences.getInstance();
     currentLanguageCode = prefs.getString(Constants.KEY_LANGUAGE_CODE) ?? 'en';
@@ -41,11 +37,13 @@ class SettingsScreenState extends State<SettingsScreen> {
   Future<void> _changeLanguage(String languageCode) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString(Constants.KEY_LANGUAGE_CODE, languageCode);
-    context.read<LocaleBloc>().add(OnLocaleChangedEvent(locale: Locale(languageCode) ));
+    context
+        .read<LocaleBloc>()
+        .add(OnLocaleChangedEvent(locale: Locale(languageCode)));
     setState(() {
       currentLanguageCode = languageCode;
+      
     });
-    
   }
 
   Future<void> getUserName() async {
@@ -63,7 +61,6 @@ class SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.settings),
@@ -74,7 +71,7 @@ class SettingsScreenState extends State<SettingsScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 14),
             child: Text(
-              userName!,
+              userName,
               style:
                   GoogleFonts.heebo(fontWeight: FontWeight.w500, fontSize: 16),
             ),
@@ -99,7 +96,6 @@ class SettingsScreenState extends State<SettingsScreen> {
 
               return ListTile(
                 title: Text(languageName),
-
                 leading: Radio<String>(
                   value: languageCode,
                   groupValue: currentLanguageCode,
@@ -112,9 +108,19 @@ class SettingsScreenState extends State<SettingsScreen> {
           ),
           TextButton(
               onPressed: () async {
-                final prefs = await SharedPreferences.getInstance();
-                prefs.setBool(Constants.KEY_LOGIN, false);
-                AutoRouter.of(context).replace(SignInRoute());
+                final message = await locator<Auth>().signOut();
+                if (message == "Success") {
+                  final prefs = await SharedPreferences.getInstance();
+                  prefs.setBool(Constants.KEY_LOGIN, false);
+                  AutoRouter.of(context).replace(const SignInRoute());
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      backgroundColor: Colors.red,
+                      content: Text("Sign Out Failed !"),
+                    ),
+                  );
+                }
               },
               child: const Text("Logout")),
         ],
